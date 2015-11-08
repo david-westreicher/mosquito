@@ -7,6 +7,9 @@ import com.madness.mosquito.MosquitoGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new MosquitoGame(), config);
+		config.vSyncEnabled = false;
+		config.backgroundFPS = 0;
+		config.foregroundFPS = 0;
+		new LwjglApplication(new MosquitoMain(), config);
 	}
 }
