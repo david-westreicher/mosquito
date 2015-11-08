@@ -3,7 +3,7 @@ package com.madness.mosquito.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.madness.mosquito.MosquitoMain;
+import com.madness.mosquito.MosquitoGame;
 
 public class HtmlLauncher extends GwtApplication {
 
@@ -14,6 +14,6 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public ApplicationListener getApplicationListener () {
-                return new MosquitoMain();
+                return new MosquitoGame();
         }
 }

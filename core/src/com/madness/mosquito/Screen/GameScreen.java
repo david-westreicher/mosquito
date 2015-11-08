@@ -1,42 +1,49 @@
-package com.madness.mosquito;
+package com.madness.mosquito.Screen;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.madness.mosquito.MosquitoGame;
 
-public class MosquitoMain extends ApplicationAdapter {
+/**
+ * Created by juanolon on 08/11/15.
+ */
+public class GameScreen extends AbstractScreen {
+
     SpriteBatch batch;
     Texture img;
 
-    private Artemis artemis;
 
-    @Override
-    public void create() {
+    public GameScreen(MosquitoGame game) {
+        super(game);
+
         batch = new SpriteBatch();
         img = new Texture("badlogic.jpg");
-        artemis = Artemis.init();
     }
 
     @Override
-    public void render() {
+    public void show() {
+
+    }
+
+    @Override
+    public void render(float delta) {
+        game.artemis.process();
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.draw(img, 0, 0);
         batch.end();
-        artemis.process();
     }
 
     @Override
     public void resize(int width, int height) {
-        artemis.resize(width, height);
+        game.artemis.resize(width, height);
     }
 
     @Override
-    public void dispose() {
-        artemis.dispose();
-        artemis = null;
+    public void hide() {
+
     }
 }
