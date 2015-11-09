@@ -6,7 +6,7 @@ import com.madness.mosquito.MosquitoGame;
 /**
  * Created by juanolon on 08/11/15.
  */
-public class LoadingScreen extends AbstractScreen{
+public class LoadingScreen extends AbstractScreen {
 
     public LoadingScreen(MosquitoGame game) {
         super(game);
@@ -26,7 +26,7 @@ public class LoadingScreen extends AbstractScreen{
 
     @Override
     public void resize(int width, int height) {
-
+        game.artemis.resize(width, height);
     }
 
     @Override

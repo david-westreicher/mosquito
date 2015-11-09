@@ -3,9 +3,11 @@ package com.madness.mosquito;
 import com.artemis.BaseSystem;
 import com.artemis.World;
 import com.artemis.WorldConfiguration;
-import com.madness.mosquito.systems.CameraSystem;
+import com.madness.mosquito.manager.CameraManager;
 import com.madness.mosquito.systems.DrawMap;
-import com.madness.mosquito.systems.Test;
+import com.madness.mosquito.manager.MapManager;
+import com.madness.mosquito.systems.MoveCamera;
+import com.madness.mosquito.systems.StartRendering;
 
 import java.util.ArrayList;
 
@@ -21,12 +23,15 @@ public class Artemis extends World {
 
     public static Artemis init() {
         WorldConfiguration config = new WorldConfiguration();
-        config.setSystem(CameraSystem.class);
+        //MANAGER
+        config.setSystem(CameraManager.class);
+        config.setSystem(MapManager.class);
 
         //LOGIC
-        //addLogic(config, Test.class);
+        addLogic(config, MoveCamera.class);
 
         //RENDERING
+        config.setSystem(StartRendering.class);
         config.setSystem(DrawMap.class);
 
         Artemis a = new Artemis(config);
@@ -41,7 +46,7 @@ public class Artemis extends World {
 
 
     public void resize(int width, int height) {
-        getSystem(CameraSystem.class).resize(width, height);
+        getSystem(CameraManager.class).resize(width, height);
     }
 
     public void dispose() {
