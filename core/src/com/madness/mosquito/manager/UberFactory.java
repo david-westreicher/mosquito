@@ -33,8 +33,8 @@ public class UberFactory extends Manager {
         pos.x = (float) Math.random() * 500;
         pos.y = (float) Math.random() * 500;
         Speed speed = mSpeed.get(e);
-        speed.x = 1;
-        speed.y = -1;
+        speed.x = (float) Math.random();
+        speed.y = 0;
         return e;
     }
 }

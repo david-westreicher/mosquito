@@ -26,5 +26,6 @@ public class MovePlayer extends IteratingSystem {
         Speed speed = mSpeed.get(e);
         pos.x += speed.x;
         pos.y += speed.y;
+        speed.y -= 0.02f;
     }
 }
