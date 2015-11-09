@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.madness.mosquito.Config;
 import com.madness.mosquito.manager.CameraManager;
 import com.madness.mosquito.manager.MapManager;
 
@@ -17,8 +18,6 @@ import com.madness.mosquito.manager.MapManager;
  */
 public class DrawMap extends BaseSystem {
 
-    private SpriteBatch batch;
-    private Texture img;
     private Mesh m;
     private ShaderProgram shader;
     private OrthographicCamera cam;
@@ -43,18 +42,21 @@ public class DrawMap extends BaseSystem {
 
     @Override
     protected void initialize() {
-        batch = new SpriteBatch();
-        img = new Texture("badlogic.jpg");
         float[] mapdata = world.getSystem(MapManager.class).verts;
-        m = new Mesh(Mesh.VertexDataType.VertexBufferObjectSubData, false, 100, 0, VertexAttribute.Position());
-        float[] verts = new float[100 * 3];
-        for (int i = 0; i < 100; i++) {
-            verts[i * 3 + 0] = i * 80;
-            verts[i * 3 + 1] = mapdata[i];
+        m = new Mesh(Mesh.VertexDataType.VertexBufferObjectSubData, false, (MapManager.VERTNUM + 2), 0, VertexAttribute.Position());
+        float[] verts = new float[(MapManager.VERTNUM + 2) * 3];
+        verts[0] = 0;
+        verts[1] = -MapManager.Y_VARIANCE;
+        verts[2] = 0;
+
+        for (int i = 1; i <= MapManager.VERTNUM; i++) {
+            verts[i * 3 + 0] = (i - 1) * Config.MAP_XDIST;
+            verts[i * 3 + 1] = mapdata[i - 1];
             verts[i * 3 + 2] = 0;
         }
-        verts[0 * 3 + 1] = -50;
-        verts[99 * 3 + 1] = -50;
+        verts[(MapManager.VERTNUM + 1) * 3 + 0] = Config.MAP_XDIST * (MapManager.VERTNUM - 1);
+        verts[(MapManager.VERTNUM + 1) * 3 + 1] = -MapManager.Y_VARIANCE;
+        verts[(MapManager.VERTNUM + 1) * 3 + 2] = 0;
         m.setVertices(verts);
         shader = new ShaderProgram(createVertex(), createFragment());
         if (!shader.isCompiled())
@@ -68,8 +70,5 @@ public class DrawMap extends BaseSystem {
         shader.setUniformMatrix("mvp", cam.combined);
         m.render(shader, GL20.GL_LINE_LOOP);
         shader.end();
-        //batch.begin();
-        //batch.draw(img, 0, 0);
-        //batch.end();
     }
 }
