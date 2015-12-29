@@ -50,7 +50,7 @@ public class ClientNetwork extends BufferedNetwork {
             }
 
             public void received (Connection connection, Object object) {
-                Gdx.app.log("server", "object: "+ object.toString());
+//                Gdx.app.log("server", "object: "+ object.toString());
                 if (object instanceof Common.LoginSuccess){
                     cc.onSuccess();
                 }

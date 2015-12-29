@@ -12,7 +12,7 @@ abstract public class ServerListener extends Listener {
     @Override
     public void received(Connection c, Object object) {
         super.received(c, object);
-        Gdx.app.log("server", "object: " + object.toString());
+//        Gdx.app.log("server", "object: " + object.toString());
         // We know all connections for this server are actually CharacterConnections.
         Common.PlayerConnection connection = (Common.PlayerConnection)c;
         Common.Player player = connection.player;
