@@ -85,6 +85,11 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
         compile "net.onedaybeard.artemis:artemis-odb:$artemisVersion"
+
+        compile "com.esotericsoftware:kryo:3.0.1"
+        compile ("com.esotericsoftware:kryonet:2.22.0-RC1") {
+            exclude module : 'kryo'
+        }
     }
 }
 

@@ -41,7 +41,7 @@ public class DrawPlayer extends IteratingSystem {
     @Override
     protected void process(int e) {
         Position pos = mPosition.get(e);
-        Gdx.app.log("pos", pos.x + "," + pos.y);
+//        Gdx.app.log("pos", pos.x + "," + pos.y);
         batch.draw(img, pos.x, pos.y, 10, 10);
     }
 
