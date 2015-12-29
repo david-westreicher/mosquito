@@ -6,7 +6,7 @@ import com.madness.mosquito.MosquitoGame;
 /**
  * Created by juanolon on 29/12/15.
  */
-public class NetworkManager extends Manager {
+public class GameManager extends Manager {
 
     MosquitoGame game;
 

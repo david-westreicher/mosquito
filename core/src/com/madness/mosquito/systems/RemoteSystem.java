@@ -7,12 +7,12 @@ import com.artemis.systems.IteratingSystem;
 import com.madness.mosquito.Network.Action;
 import com.madness.mosquito.Network.ClientNetwork;
 import com.madness.mosquito.Network.Common;
-import com.madness.mosquito.components.LocalPlayer;
 import com.madness.mosquito.components.Position;
 import com.madness.mosquito.components.RemotePlayer;
-import com.madness.mosquito.manager.NetworkManager;
+import com.madness.mosquito.manager.GameManager;
 
 import java.util.HashMap;
+import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  * Created by juanolon on 29/12/15.
@@ -26,6 +26,7 @@ public class RemoteSystem extends IteratingSystem {
 
     protected ClientNetwork client;
 
+
     public RemoteSystem() {
         super(Aspect.all(RemotePlayer.class, Position.class));
     }
@@ -37,13 +38,20 @@ public class RemoteSystem extends IteratingSystem {
 
     @Override
     protected void begin() {
-        client = world.getSystem(NetworkManager.class).getGame().client;
+        LinkedBlockingDeque<Action> in;
 
-        for (Action action : client.in){
+        if (world.getSystem(GameManager.class).getGame().isServer) {
+            in = world.getSystem(GameManager.class).getGame().server.in;
+        } else {
+            in = world.getSystem(GameManager.class).getGame().client.in;
+        }
+
+
+        for (Action action : in){
             Common.PositionAction act = (Common.PositionAction)action;
             states.put(act.id, act);
         }
-        client.in.clear();
+        in.clear();
     }
 
     @Override

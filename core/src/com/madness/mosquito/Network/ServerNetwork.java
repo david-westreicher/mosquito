@@ -26,6 +26,13 @@ public class ServerNetwork extends BufferedNetwork {
         }
     }
 
+    public void flush(){
+        for (Action action : out) {
+            server.sendToAllTCP(action);
+        }
+        out.clear();
+    }
+
     public void start() {
 
         // creates new server

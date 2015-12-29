@@ -59,6 +59,10 @@ public class ClientNetwork extends BufferedNetwork {
                     Gdx.app.log("server", "receive new player: "+object.toString());
                     cc.onNewPlayer((Common.Player) object);
                 }
+
+                if (object instanceof Common.PositionAction) {
+                    in.add((Common.PositionAction)object);
+                }
 //
 //                if (object instanceof Common.UpdateCharacter) {
 ////                    ui.updateCharacter((Common.UpdateCharacter)object);

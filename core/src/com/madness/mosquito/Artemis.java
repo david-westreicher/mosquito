@@ -3,9 +3,8 @@ package com.madness.mosquito;
 import com.artemis.BaseSystem;
 import com.artemis.World;
 import com.artemis.WorldConfiguration;
-import com.badlogic.gdx.Game;
 import com.madness.mosquito.manager.CameraManager;
-import com.madness.mosquito.manager.NetworkManager;
+import com.madness.mosquito.manager.GameManager;
 import com.madness.mosquito.manager.UberFactory;
 import com.madness.mosquito.systems.ClientSystem;
 import com.madness.mosquito.systems.CollisionSystem;
@@ -37,18 +36,18 @@ public class Artemis extends World {
         config.setSystem(MapManager.class);
         config.setSystem(UberFactory.class);
 
-        config.setSystem(NetworkManager.class);
+        config.setSystem(GameManager.class);
 
         //LOGIC
         addLogic(config, MoveCamera.class);
         addLogic(config, MovePlayer.class);
         addLogic(config, CollisionSystem.class);
 
+        addLogic(config, RemoteSystem.class);
         if (game.isServer) {
             addLogic(config, ServerSystem.class);
         } else {
             addLogic(config, ClientSystem.class);
-            addLogic(config, RemoteSystem.class);
         }
 
         //RENDERING
@@ -58,7 +57,7 @@ public class Artemis extends World {
 
         Artemis a = new Artemis(config);
         a.setInvocationStrategy(new FixedTimestepStrategy(a));
-        a.getSystem(NetworkManager.class).setGame(game);
+        a.getSystem(GameManager.class).setGame(game);
         addPlayer(a);
         return a;
     }

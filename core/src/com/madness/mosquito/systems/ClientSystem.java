@@ -4,12 +4,11 @@ import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
 import com.artemis.annotations.Wire;
 import com.artemis.systems.IteratingSystem;
-import com.madness.mosquito.Network.Action;
 import com.madness.mosquito.Network.ClientNetwork;
 import com.madness.mosquito.Network.Common;
 import com.madness.mosquito.components.LocalPlayer;
 import com.madness.mosquito.components.Position;
-import com.madness.mosquito.manager.NetworkManager;
+import com.madness.mosquito.manager.GameManager;
 
 /**
  * Created by juanolon on 29/12/15.
@@ -27,7 +26,7 @@ public class ClientSystem extends IteratingSystem {
 
     @Override
     protected void begin() {
-        client = world.getSystem(NetworkManager.class).getGame().client;
+        client = world.getSystem(GameManager.class).getGame().client;
     }
 
     @Override
