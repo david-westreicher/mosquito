@@ -33,7 +33,8 @@ public class MoveCamera extends IteratingSystem {
         OrthographicCamera cam = world.getSystem(CameraManager.class).cam;
         cam.position.x = max;
         cam.position.y = maxy;
-        cam.zoom = Math.abs((float) Math.sin(Gdx.graphics.getFrameId() / 1000.0)) + 0.1f;
+//        cam.zoom = Math.abs((float) Math.sin(Gdx.graphics.getFrameId() / 1000.0)) + 0.1f;
+        cam.zoom = 1.1f;
         cam.update();
     }
 
