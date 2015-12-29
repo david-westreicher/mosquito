@@ -6,6 +6,7 @@ import com.artemis.ComponentMapper;
 import com.artemis.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.madness.mosquito.components.LocalPlayer;
 import com.madness.mosquito.components.Position;
 import com.madness.mosquito.manager.CameraManager;
 
@@ -18,7 +19,7 @@ public class MoveCamera extends IteratingSystem {
     private float maxy;
 
     public MoveCamera() {
-        super(Aspect.all(Position.class));
+        super(Aspect.all(Position.class, LocalPlayer.class));
     }
 
     @Override
