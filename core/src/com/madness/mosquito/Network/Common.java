@@ -14,7 +14,6 @@ public class Common {
         kryo.register(LoginSuccess.class);
         kryo.register(RegistrationRequired.class);
         kryo.register(Register.class);
-        kryo.register(AddCharacter.class);
         kryo.register(UpdateCharacter.class);
         kryo.register(RemoveCharacter.class);
         kryo.register(Player.class);
@@ -37,16 +36,16 @@ public class Common {
         public String name;
     }
 
+    static public class Player {
+        public String name;
+        public int id, x, y;
+    }
 
 
 
     // deprecated
     static public class UpdateCharacter {
         public int id, x, y;
-    }
-
-    static public class AddCharacter {
-        public Player player;
     }
 
     static public class RemoveCharacter {

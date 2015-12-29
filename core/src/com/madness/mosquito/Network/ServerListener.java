@@ -15,7 +15,7 @@ abstract public class ServerListener extends Listener {
         Gdx.app.log("server", "object: " + object.toString());
         // We know all connections for this server are actually CharacterConnections.
         Common.PlayerConnection connection = (Common.PlayerConnection)c;
-        Player player = connection.player;
+        Common.Player player = connection.player;
 
         if (object instanceof Common.Login) {
             onLogin((Common.Login)object, connection);

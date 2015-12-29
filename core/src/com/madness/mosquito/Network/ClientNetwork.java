@@ -47,12 +47,11 @@ public class ClientNetwork extends BufferedNetwork {
                 if (object instanceof Common.LoginSuccess){
                     cc.onSuccess();
                 }
-//
-//                if (object instanceof Common.AddCharacter) {
-//                    Common.AddCharacter msg = (Common.AddCharacter)object;
-////                    ui.addCharacter(msg.character);
-//                    return;
-//                }
+
+                if (object instanceof Common.Player) {
+                    Gdx.app.log("server", "receive new player: "+object.toString());
+                    cc.onNewPlayer((Common.Player)object);
+                }
 //
 //                if (object instanceof Common.UpdateCharacter) {
 ////                    ui.updateCharacter((Common.UpdateCharacter)object);
@@ -86,5 +85,7 @@ public class ClientNetwork extends BufferedNetwork {
         void onSuccess();
 
         void onFailure(String fail);
+
+        void onNewPlayer(Common.Player player);
     }
 }

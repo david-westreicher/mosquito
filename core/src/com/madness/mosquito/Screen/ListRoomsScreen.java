@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.madness.mosquito.MosquitoGame;
 import com.madness.mosquito.Network.ClientNetwork;
+import com.madness.mosquito.Network.Common;
 import com.madness.mosquito.Network.Server;
 
 /**
@@ -39,6 +40,11 @@ public class ListRoomsScreen extends AbstractScreen {
             public void onFailure(String fail) {
                 status =  "connection failed";
                 Gdx.app.log("network",status);
+            }
+
+            @Override
+            public void onNewPlayer(Common.Player player) {
+                Gdx.app.log("network", "player join: "+player);
             }
         });
 

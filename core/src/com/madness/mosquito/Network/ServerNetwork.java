@@ -4,11 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashSet;
 
@@ -19,9 +14,9 @@ public class ServerNetwork extends BufferedNetwork {
 
     Server server;
 
-    HashSet<Player> loggedIn = new HashSet();
+    HashSet<Common.Player> loggedIn = new HashSet();
 
-    public HashSet<Player> getPlayers(){
+    public HashSet<Common.Player> getPlayers(){
         return loggedIn;
     }
 
@@ -57,25 +52,21 @@ public class ServerNetwork extends BufferedNetwork {
             @Override
             void onLogin(Common.Login login, Common.PlayerConnection c) {
 
-                Player player = new Player();
+                Common.Player player = new Common.Player();
                 player.name = login.name;
                 c.player = player;
 
                 c.sendTCP(new Common.LoginSuccess());
 
                 // Add existing characters to new logged in connection.
-                for (Player other : loggedIn) {
-                    Common.AddCharacter addCharacter = new Common.AddCharacter();
-                    addCharacter.player = other;
-                    c.sendTCP(addCharacter);
+                for (Common.Player other : loggedIn) {
+                    c.sendTCP(other);
                 }
 
                 loggedIn.add(player);
 
                 // Add logged in player to all connections.
-                Common.AddCharacter addCharacter = new Common.AddCharacter();
-                addCharacter.player = player;
-                server.sendToAllTCP(addCharacter);
+                server.sendToAllTCP(player);
                 return;
             }
 
