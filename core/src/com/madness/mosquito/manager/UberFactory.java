@@ -32,7 +32,6 @@ public class UberFactory extends Manager {
 
         playerRemoteCreator = new EntityTransmuterFactory(world).
                 add(Position.class).
-                add(Speed.class).
                 add(RemotePlayer.class).
                 build();
     }
@@ -41,10 +40,10 @@ public class UberFactory extends Manager {
         int e = w.create();
         playerCreator.transmute(e);
         Position pos = mPosition.get(e);
-        pos.x = (float) Math.random() * 500;
-        pos.y = (float) Math.random() * 500;
+        pos.x = (float) 300;
+        pos.y = (float) 300;
         Speed speed = mSpeed.get(e);
-        speed.x = (float) Math.random();
+        speed.x = (float) 0.1f;
         speed.y = 0;
         return e;
     }
@@ -58,9 +57,6 @@ public class UberFactory extends Manager {
         player.id = id;
         pos.x = (float) Math.random() * 500;
         pos.y = (float) Math.random() * 500;
-        Speed speed = mSpeed.get(e);
-        speed.x = (float) Math.random();
-        speed.y = 0;
         return e;
     }
 }
