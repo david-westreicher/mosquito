@@ -4,6 +4,7 @@ import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
 import com.artemis.annotations.Wire;
 import com.artemis.systems.IteratingSystem;
+import com.madness.mosquito.components.LocalPlayer;
 import com.madness.mosquito.components.Position;
 import com.madness.mosquito.components.Speed;
 import com.madness.mosquito.manager.MapManager;
@@ -17,7 +18,7 @@ public class MovePlayer extends IteratingSystem {
     protected ComponentMapper<Speed> mSpeed;
 
     public MovePlayer() {
-        super(Aspect.all(Position.class, Speed.class));
+        super(Aspect.all(Position.class, Speed.class, LocalPlayer.class));
     }
 
     @Override

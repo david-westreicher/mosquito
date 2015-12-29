@@ -5,6 +5,7 @@ import com.artemis.ComponentMapper;
 import com.artemis.annotations.Wire;
 import com.artemis.systems.IteratingSystem;
 import com.madness.mosquito.Config;
+import com.madness.mosquito.components.LocalPlayer;
 import com.madness.mosquito.components.Position;
 import com.madness.mosquito.components.Speed;
 import com.madness.mosquito.manager.MapManager;
@@ -19,7 +20,7 @@ public class CollisionSystem extends IteratingSystem {
     private float[] map;
 
     public CollisionSystem() {
-        super(Aspect.all(Position.class, Speed.class));
+        super(Aspect.all(Position.class, Speed.class, LocalPlayer.class));
     }
 
     @Override
