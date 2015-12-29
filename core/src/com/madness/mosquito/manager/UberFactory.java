@@ -6,6 +6,7 @@ import com.artemis.EntityTransmuterFactory;
 import com.artemis.Manager;
 import com.artemis.World;
 import com.artemis.annotations.Wire;
+import com.madness.mosquito.components.LocalPlayer;
 import com.madness.mosquito.components.Position;
 import com.madness.mosquito.components.Speed;
 
@@ -23,6 +24,7 @@ public class UberFactory extends Manager {
         playerCreator = new EntityTransmuterFactory(world).
                 add(Position.class).
                 add(Speed.class).
+                add(LocalPlayer.class).
                 build();
     }
 

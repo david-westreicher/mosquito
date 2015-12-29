@@ -46,7 +46,7 @@ public class ServerNetwork extends BufferedNetwork {
 
             @Override
             void onAction(Action action, Common.PlayerConnection connection) {
-                push(action);
+                in.add(action);
             }
 
             @Override

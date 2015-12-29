@@ -6,7 +6,7 @@ import com.artemis.systems.IteratingSystem;
 /**
  * Created by juanolon on 12/12/15.
  */
-public class Network extends IteratingSystem
+public class ServerSystem extends IteratingSystem
 {
 
     /**
@@ -14,7 +14,7 @@ public class Network extends IteratingSystem
      *
      * @param aspect the aspect to match entities
      */
-    public Network(Aspect.Builder aspect) {
+    public ServerSystem(Aspect.Builder aspect) {
         super(aspect);
     }
 
@@ -26,8 +26,9 @@ public class Network extends IteratingSystem
 
     @Override
     protected void process(int entityId) {
-//        if (com.madness.mosquito.Network.Network.hasPlayer(entityId)) {
-//            com.madness.mosquito.Network.Network.Player player = com.madness.mosquito.Network.Network.getPlayer(entityId);
+
+//        if (com.madness.mosquito.ServerSystem.ServerSystem.hasPlayer(entityId)) {
+//            com.madness.mosquito.ServerSystem.ServerSystem.Player player = com.madness.mosquito.ServerSystem.ServerSystem.getPlayer(entityId);
 //            // coponent = getComponent(entityId)
 //            // componsent.baba = player.baba;
 //            // ...

@@ -18,6 +18,7 @@ public class Common {
         kryo.register(RemoveCharacter.class);
         kryo.register(Player.class);
         kryo.register(MoveCharacter.class);
+        kryo.register(PositionAction.class);
     }
 
     static class PlayerConnection extends Connection {
@@ -41,6 +42,11 @@ public class Common {
         public int id, x, y;
     }
 
+    static public class PositionAction extends Action {
+        public int id;
+        public float x;
+        public float y;
+    }
 
 
     // deprecated

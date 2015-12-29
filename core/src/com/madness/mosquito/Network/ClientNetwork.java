@@ -24,6 +24,13 @@ public class ClientNetwork extends BufferedNetwork {
         }
     }
 
+    public void flush(){
+        for (Action action : out) {
+            client.sendTCP(action);
+        }
+        out.clear();
+    }
+
     public void connect(final Server server, final ConnectCallback cc) {
 
         client = new Client();
@@ -50,7 +57,7 @@ public class ClientNetwork extends BufferedNetwork {
 
                 if (object instanceof Common.Player) {
                     Gdx.app.log("server", "receive new player: "+object.toString());
-                    cc.onNewPlayer((Common.Player)object);
+                    cc.onNewPlayer((Common.Player) object);
                 }
 //
 //                if (object instanceof Common.UpdateCharacter) {

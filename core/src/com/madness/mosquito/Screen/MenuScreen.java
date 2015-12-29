@@ -37,6 +37,7 @@ public class MenuScreen extends AbstractScreen {
                     public void act() {
                         // open list screen
                         //game.client.connect();
+                        game.isServer = false;
                         game.setScreen(new ListRoomsScreen(game));
                     }
                 }, false)
@@ -44,6 +45,7 @@ public class MenuScreen extends AbstractScreen {
                     @Override
                     public void act() {
                         // start server
+                        game.isServer = true;
                         game.server.start();
                         game.setScreen(new RoomScreen(game));
                     }

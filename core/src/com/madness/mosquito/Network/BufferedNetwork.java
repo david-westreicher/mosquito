@@ -1,21 +1,14 @@
 package com.madness.mosquito.Network;
 
-import java.util.ArrayList;
+import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  * Created by juanolon on 29/12/15.
  */
 public abstract class BufferedNetwork {
-    ArrayList<Action> in;
-    ArrayList<Action> out;
 
-    public void push(Action action){
-        in.add(action);
-    }
-
-    public void pop(Action action){
-        out.add(action);
-    }
+    public LinkedBlockingDeque<Action> in = new LinkedBlockingDeque<Action>();
+    public LinkedBlockingDeque<Action> out = new LinkedBlockingDeque<Action>();
 
     abstract void close();
 }

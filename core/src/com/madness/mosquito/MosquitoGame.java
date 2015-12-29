@@ -11,12 +11,14 @@ public class MosquitoGame extends Game {
     public AssetManager manager = new AssetManager();
     public Artemis artemis;
 
+    public boolean isServer;
+
     public ServerNetwork server;
     public ClientNetwork client;
 
     @Override
     public void create() {
-        artemis = Artemis.init();
+        artemis = Artemis.init(this);
 
         server = new ServerNetwork();
         client = new ClientNetwork();
