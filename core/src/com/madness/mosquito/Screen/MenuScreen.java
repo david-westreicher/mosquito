@@ -3,6 +3,7 @@ package com.madness.mosquito.Screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.madness.mosquito.MosquitoGame;
 import com.madness.mosquito.lib.MenuAction;
@@ -73,6 +74,7 @@ public class MenuScreen extends AbstractScreen {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
 
