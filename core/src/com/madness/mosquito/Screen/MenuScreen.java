@@ -7,6 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.madness.mosquito.MosquitoGame;
 import com.madness.mosquito.lib.MenuAction;
 import com.madness.mosquito.lib.MenuBuilder;
+import com.madness.mosquito.systems.ClientSystem;
+import com.madness.mosquito.systems.ServerSystem;
 
 /**
  * Created by juanolon on 08/11/15.
@@ -38,6 +40,7 @@ public class MenuScreen extends AbstractScreen {
                         // open list screen
                         //game.client.connect();
                         game.isServer = false;
+                        game.artemis.getSystem(ServerSystem.class).setEnabled(false);
                         game.setScreen(new ListRoomsScreen(game));
                     }
                 }, false)
@@ -46,8 +49,9 @@ public class MenuScreen extends AbstractScreen {
                     public void act() {
                         // start server
                         game.isServer = true;
+                        game.artemis.getSystem(ClientSystem.class).setEnabled(false);
                         game.server.start();
-                        game.setScreen(new RoomScreen(game));
+                        game.setScreen(new GameScreen(game));
                     }
                 }, debug)
                 .addButton("Exit", new MenuAction() {

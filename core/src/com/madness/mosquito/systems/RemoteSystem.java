@@ -10,6 +10,7 @@ import com.madness.mosquito.Network.Common;
 import com.madness.mosquito.components.Position;
 import com.madness.mosquito.components.RemotePlayer;
 import com.madness.mosquito.manager.GameManager;
+import com.madness.mosquito.manager.UberFactory;
 
 import java.util.HashMap;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -48,8 +49,13 @@ public class RemoteSystem extends IteratingSystem {
 
 
         for (Action action : in){
-            Common.PositionAction act = (Common.PositionAction)action;
-            states.put(act.id, act);
+            if (action instanceof Common.PositionAction) {
+                Common.PositionAction act = (Common.PositionAction)action;
+                if (!states.containsKey(act.id)) {
+                    world.getSystem(UberFactory.class).createRemotePlayer(world, act.id);
+                }
+                states.put(act.id, act);
+            }
         }
         in.clear();
     }

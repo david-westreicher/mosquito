@@ -44,11 +44,9 @@ public class Artemis extends World {
         addLogic(config, CollisionSystem.class);
 
         addLogic(config, RemoteSystem.class);
-        if (game.isServer) {
-            addLogic(config, ServerSystem.class);
-        } else {
-            addLogic(config, ClientSystem.class);
-        }
+
+        addLogic(config, ServerSystem.class); // will be disabled
+        addLogic(config, ClientSystem.class);
 
         //RENDERING
         config.setSystem(StartRendering.class);
